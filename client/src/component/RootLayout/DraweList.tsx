@@ -8,12 +8,13 @@ import {
   ListSubheader,
 } from "@mui/material";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 
 //내부 import
-import MenuList from "../../assets/MenuList";
 import type { TMenuItem } from "../../assets/MenuList";
 
-const DraweList: React.FC = () => {
+const DraweList = ({ MenuList }: { MenuList: TMenuItem[] }) => {
+  const navigate = useNavigate();
   const [openMap, setOpenMap] = React.useState<Record<string, boolean>>({});
 
   const handleToggle = (key: string) => {
@@ -23,14 +24,19 @@ const DraweList: React.FC = () => {
   const renderMenuItems = (items: TMenuItem[], depth = 0): React.ReactNode => {
     return items.map((item) => {
       const hasChildren = item.children;
-      const isOpen = openMap[item.router] ?? false;
+      const isOpen = openMap[item.path] ?? false;
+
+      const handleClick = () => {
+        if (hasChildren) {
+          handleToggle(item?.path);
+        } else {
+          navigate(item?.path);
+        }
+      };
 
       return (
-        <React.Fragment key={item.router}>
-          <ListItemButton
-            onClick={() => hasChildren && handleToggle(item.router)}
-            sx={{ pl: 2 + depth * 2 }}
-          >
+        <React.Fragment key={item.path}>
+          <ListItemButton onClick={handleClick} sx={{ pl: 2 + depth * 2 }}>
             <ListItemIcon>{item.icon}</ListItemIcon>
             <ListItemText primary={item.title} />
             {hasChildren && (isOpen ? <ExpandLess /> : <ExpandMore />)}
