@@ -1,0 +1,41 @@
+[
+  {
+    "id": "1",
+    "password": "pass1234",
+    "name": "홍길동",
+    "faceImage": "https://example.com/images/hong.jpg",
+    "age": 30,
+    "sex": "M",
+    "address": "서울시 강남구 테헤란로 123",
+    "tel": "02-1234-5678",
+    "mobile": "010-1234-5678",
+    "email": "hong@example.com",
+    "birthday": "1993-05-20"
+  },
+  {
+    "id": "2",
+    "password": "pwd5678",
+    "name": "김영희",
+    "faceImage": "https://example.com/images/kim.jpg",
+    "age": 28,
+    "sex": "F",
+    "address": "부산시 해운대구 우동 456",
+    "tel": "051-9876-5432",
+    "mobile": "010-9876-5432",
+    "email": "kim@example.com",
+    "birthday": "1995-08-15"
+  },
+  {
+    "id": "3",
+    "password": "abc9012",
+    "name": "이민호",
+    "faceImage": "https://example.com/images/lee.jpg",
+    "age": 35,
+    "sex": "M",
+    "address": "대구시 수성구 범어로 789",
+    "tel": "053-555-1234",
+    "mobile": "010-5555-1234",
+    "email": "lee@example.com",
+    "birthday": "1989-12-02"
+  }
+]

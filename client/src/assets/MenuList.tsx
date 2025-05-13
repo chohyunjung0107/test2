@@ -15,18 +15,23 @@ export interface TMenuItem {
 // 메뉴 데이터
 const MenuList: TMenuItem[] = [
   {
-    title: "메뉴1",
+    title: "MES",
     router: "/menu1",
     icon: <InboxIcon />,
     children: [
       {
-        title: "메뉴1-1",
+        title: "SYSTEM",
         router: "/menu1/menu1-1",
         icon: <DraftsIcon />,
         children: [
           {
-            title: "메뉴1-1-1",
+            title: "사용자 관리",
             router: "/menu1/menu1-1/menu1-1-1",
+            icon: <StarBorder />,
+          },
+          {
+            title: "권한한 관리",
+            router: "/menu1/menu1-1/menu1-1-2",
             icon: <StarBorder />,
           },
         ],
