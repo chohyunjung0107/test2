@@ -11,7 +11,7 @@ import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 
 //내부 import
-import type { TMenuItem } from "../../assets/MenuList";
+import type { TMenuItem } from "../../../assets/MenuList";
 
 const DraweList = ({ MenuList }: { MenuList: TMenuItem[] }) => {
   const navigate = useNavigate();
