@@ -44,10 +44,17 @@ router.get("/", (req, res) => {
 router.post("/", (req, res) => {
   const users = readUsers();
   const newUser = {
-    id: uuidv4(),
+    id: req.body.id,
+    password: req.body.password,
     name: req.body.name,
-    email: req.body.email,
+    faceImage: req.body.faceImage,
     age: req.body.age,
+    sex: req.body.sex,
+    address: req.body.address,
+    tel: req.body.tel,
+    mobile: req.body.mobile,
+    email: req.body.email,
+    birthday: req.body.birthday,
   };
   users.push(newUser);
   writeUsers(users);
