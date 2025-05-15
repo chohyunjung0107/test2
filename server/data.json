@@ -37,5 +37,50 @@
     "mobile": "010-5555-1234",
     "email": "lee@example.com",
     "birthday": "1989-12-02"
+  },
+  {
+    "id": "4",
+    "password": "abc9012",
+    "name": "이민호ssss",
+    "faceImage": "https://example.com/images/lee.jpg",
+    "age": 35,
+    "sex": "M",
+    "address": "대구시 수성구 범어로 789",
+    "tel": "053-555-1234",
+    "mobile": "010-5555-1234",
+    "email": "lee@example.com",
+    "birthday": "1989-12-02"
+  },
+  {
+    "id": "fd950d60-3219-45ce-86fa-5d8a69bde395",
+    "name": "test",
+    "email": "test",
+    "age": 1
+  },
+  {
+    "id": "test",
+    "password": "test",
+    "name": "test",
+    "faceImage": "test",
+    "age": 1,
+    "sex": "M",
+    "address": "test",
+    "tel": "test",
+    "mobile": "test",
+    "email": "test",
+    "birthday": "test"
+  },
+  {
+    "id": "아이디",
+    "password": "패패",
+    "name": "이름",
+    "faceImage": "얼굴없",
+    "age": "나이",
+    "sex": "F",
+    "address": "은행집",
+    "tel": "00",
+    "mobile": "없",
+    "email": "없",
+    "birthday": "없"
   }
 ]
