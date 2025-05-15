@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { styled, useTheme } from "@mui/material/styles";
 import { Box, Drawer, Typography, IconButton } from "@mui/material";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
@@ -44,9 +45,11 @@ export default function SideMenu({
       <DrawerHeader>
         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
           <MenuPopupState />
-          <Typography variant="h6" noWrap>
-            LOGO
-          </Typography>
+          <Link href="/">
+            <Typography variant="h6" noWrap>
+              LOGO
+            </Typography>
+          </Link>
         </Box>
         <IconButton onClick={handleDrawerClose}>
           {theme.direction === "ltr" ? (

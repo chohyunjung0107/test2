@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 
 import { styled } from "@mui/material/styles";
 import {
@@ -71,9 +71,12 @@ export default function Header({
           {!open && (
             <>
               <MenuPopupState />
-              <Typography variant="h6" noWrap>
-                LOGO
-              </Typography>
+
+              <Link href="/">
+                <Typography variant="h6" noWrap>
+                  LOGO
+                </Typography>
+              </Link>
             </>
           )}
           <IconButton

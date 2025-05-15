@@ -1,16 +1,9 @@
 import type { ReactElement } from "react";
 
-import { lazy } from "react";
-import Loadable from "../component/Loadable";
-
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import DraftsIcon from "@mui/icons-material/Drafts";
 import SendIcon from "@mui/icons-material/Send";
 import StarBorder from "@mui/icons-material/StarBorder";
-
-import RootLayout from "../component/RootLayout";
-
-const UserPage = Loadable(lazy(() => import("../pages/UserPage")));
 
 // 메뉴 항목 타입 정의
 export interface TMenuItem {
@@ -27,7 +20,6 @@ const MenuList: TMenuItem[] = [
     title: "MES",
     path: "/mes",
     icon: <InboxIcon />,
-    element: <RootLayout />,
     children: [
       {
         title: "SYSTEM",
@@ -38,13 +30,51 @@ const MenuList: TMenuItem[] = [
             title: "사용자 관리",
             path: "/mes/system/user",
             icon: <StarBorder />,
-            element: <UserPage />,
           },
           {
-            title: "권한한 관리",
-            path: "/mes/system/auth",
+            title: "테스트1",
+            path: "mes/system/test1",
             icon: <StarBorder />,
-            element: <div>권한 관리</div>,
+          },
+          {
+            title: "테스트2",
+            path: "mes/system/test2",
+            icon: <StarBorder />,
+          },
+          {
+            title: "테스트3",
+            path: "mes/system/test3",
+            icon: <StarBorder />,
+          },
+          {
+            title: "테스트4",
+            path: "mes/system/test4",
+            icon: <StarBorder />,
+          },
+          {
+            title: "테스트5",
+            path: "mes/system/test5",
+            icon: <StarBorder />,
+          },
+          {
+            title: "테스트6",
+            path: "mes/system/test6",
+            icon: <StarBorder />,
+          },
+          {
+            title: "테스트7",
+            path: "mes/system/test7",
+            icon: <StarBorder />,
+          },
+          {
+            title: "테스트8",
+            path: "mes/system/test8",
+            icon: <StarBorder />,
+          },
+          {
+            title: "테스트9",
+            path: "mes/system/test9",
+            icon: <StarBorder />,
           },
         ],
       },
