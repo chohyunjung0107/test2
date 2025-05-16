@@ -66,3 +66,32 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+/* 탭 css */
+.tab-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  color: #333;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+  min-width: 120px;
+}
+
+.tab-item:hover {
+  background-color: #eaeaea;
+}
+
+.tab-item.active {
+  border: 3px solid #34ddd5;
+  font-weight: 600;
+}
+
+.tab-label {
+  margin-right: 4px;
+  white-space: nowrap;
+}

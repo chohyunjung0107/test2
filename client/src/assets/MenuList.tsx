@@ -107,3 +107,17 @@ const MenuList: TMenuItem[] = [
 ];
 
 export default MenuList;
+
+export const childMenu = [
+  { title: "home", path: "/" },
+  { title: "사용자 관리", path: "/mes/system/user" },
+  { title: "테스트1", path: "/mes/system/test1" },
+  { title: "테스트2", path: "/mes/system/test2" },
+  { title: "테스트3", path: "/mes/system/test3" },
+  { title: "테스트4", path: "/mes/system/test4" },
+  { title: "테스트5", path: "/mes/system/test5" },
+  { title: "테스트6", path: "/mes/system/test6" },
+  { title: "테스트7", path: "/mes/system/test7" },
+  { title: "테스트8", path: "/mes/system/test8" },
+  { title: "테스트9", path: "/mes/system/test9" },
+];

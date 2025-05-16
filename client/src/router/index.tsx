@@ -3,6 +3,7 @@ import RootLayout from "../component/RootLayout";
 import { lazy } from "react";
 import Loadable from "../component/Loadable";
 
+const Home = Loadable(lazy(() => import("../pages/Home")));
 const User = Loadable(lazy(() => import("../pages/UserPage")));
 const Test1 = Loadable(lazy(() => import("../pages/Testpage1")));
 const Test2 = Loadable(lazy(() => import("../pages/Testpage2")));
@@ -22,6 +23,10 @@ const routerConfig = [
     path: "/",
     element: <RootLayout />,
     children: [
+      {
+        path: "",
+        element: <Home />,
+      },
       {
         path: "mes/system/user",
         element: <User />,

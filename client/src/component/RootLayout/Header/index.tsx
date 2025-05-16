@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, NavLink, useNavigate } from "react-router-dom";
 
 import { styled } from "@mui/material/styles";
 import {
@@ -13,11 +13,13 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import NightlightIcon from "@mui/icons-material/Nightlight";
 import LightModeIcon from "@mui/icons-material/LightMode";
+import HighlightOffOutlined from "@mui/icons-material/HighlightOffOutlined";
 
 //내부 import
 import MenuPopupState from "./MenuPopupState";
-import { MenuOpenContext } from "../../../context/MenuContext";
 import { IsModeContext } from "../../../context/ModeContext";
+import { childMenu } from "../../../assets/MenuList";
+
 const drawerWidth = 240;
 
 // AppBar 스타일 확장
@@ -47,25 +49,51 @@ export default function Header({
   handleDrawerOpen: () => void;
 }) {
   const location = useLocation();
-  const { menuName, fomatMenuList } = useContext(MenuOpenContext);
+  const navigate = useNavigate();
   const { isDark, toggleMode } = useContext(IsModeContext);
-  const [tabList, setTabList] = useState<string[]>([]);
+  const [tabList, setTabList] = useState<{ name: string; router: string }[]>(
+    []
+  );
 
-  // const handleTabClose = (e: React.MouseEvent<HTMLButtonElement>) => {
-  //   e.preventDefault();
-  //   //menuName을 클릭한 탭의 라우터를 제거한다.
-  // };
+  const handleTabClose = (
+    e: React.MouseEvent<HTMLButtonElement>,
+    router: string
+  ) => {
+    e.preventDefault();
+
+    //현재 라우터의 탭을 닫으면 이전 탭으로 이동
+    const currentPath = location.pathname;
+    if (currentPath === router) {
+      navigate(tabList[tabList.length - 2].router);
+    }
+
+    //tabList에서 현재 탭을 삭제
+    const newTabList = tabList?.filter((item) => item.router !== router);
+    setTabList(newTabList);
+  };
+
+  const handleInTabPage = (pathname: string) => {
+    //tabList에 이미 존재하는지 확인하고 존재하면 그냥 리턴해버림
+    const isExist = tabList?.some((item) => item.router === pathname);
+    if (isExist) return;
+
+    //tabList의 length가 7개 이상이면 가장 오래된 탭을 삭제
+    if (tabList.length >= 7) {
+      const newTabList = tabList.slice(1);
+      setTabList(newTabList);
+    }
+
+    const d = childMenu.filter((page) => {
+      return page.path === pathname;
+    });
+
+    return setTabList((prev: any) => {
+      return [...prev, { name: d[0].title, router: d[0].path }];
+    });
+  };
 
   useEffect(() => {
-    fomatMenuList();
-
-    // 중복 값은 제거하고 새로운 배열로 생성
-    const uniqueTabList = Array.from(
-      new Set([...tabList, menuName[menuName.length - 1]])
-    );
-    setTabList(uniqueTabList);
-
-    console.log("tabList", tabList);
+    handleInTabPage(location.pathname);
   }, [location.pathname]);
 
   return (
@@ -102,39 +130,39 @@ export default function Header({
             </IconButton>
 
             {/* =========TAB BAR=========== */}
-            {/* <div
-            style={{
-              width: "50%",
-              display: "flex",
-              background: "red",
-              flex: 1,
-              marginBottom: "-19px",
-            }}
-          >
-            {tabList &&
-              tabList?.map((item, idx) => {
-                return (
-                  <NavLink
-                    to={`/${item}`}
-                    key={idx}
-                    style={{
-                      with: "15%",
-                      border: "1px solid #ccc",
-                      borderRadius: "5px",
-                      padding: "5px",
-                      backgroundColor: "#fff",
-                      color: "#000",
-                    }}
-                    className={({ isActive }: { isActive: boolean }) =>
-                      isActive ? "active" : ""
-                    }
-                  >
-                    <span>{item}</span>
-                    <button onClick={handleTabClose}>x</button>
-                  </NavLink>
-                );
-              })}
-          </div> */}
+            <div
+              style={{
+                width: "50%",
+                display: "flex",
+                flex: 1,
+                marginBottom: "-19px",
+              }}
+            >
+              {tabList &&
+                tabList?.map((item) => {
+                  return (
+                    <NavLink
+                      to={`${item.router}`}
+                      key={item.router}
+                      className={({ isActive }: { isActive: boolean }) =>
+                        `tab-item ${isActive ? "active" : ""}`
+                      }
+                    >
+                      <span className="tab-label">{item.name}</span>
+                      <IconButton
+                        size="small"
+                        color="primary"
+                        onClick={(event) => {
+                          event.preventDefault();
+                          handleTabClose(event, item.router);
+                        }}
+                      >
+                        <HighlightOffOutlined />
+                      </IconButton>
+                    </NavLink>
+                  );
+                })}
+            </div>
           </Stack>
 
           <Stack>
