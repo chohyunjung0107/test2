@@ -1,8 +1,6 @@
-import { useState } from "react";
 import type { ChangeEvent, KeyboardEvent } from "react";
-import { TextField } from "@mui/material";
+import { TextField, Stack } from "@mui/material";
 
-import { useGetUserList } from "../../hook/useGetUser";
 interface SearchInputValue {
   id: string;
   name: string;
@@ -22,7 +20,7 @@ export default function UserSearchFields({
   handleKeyDown,
 }: UserSearchFieldsProps) {
   return (
-    <div>
+    <Stack direction={"row"} flex={"1 1 0"}>
       <TextField
         name="id"
         label="아이디"
@@ -63,6 +61,6 @@ export default function UserSearchFields({
         onChange={handleOnChange}
         onKeyDown={handleKeyDown}
       />
-    </div>
+    </Stack>
   );
 }

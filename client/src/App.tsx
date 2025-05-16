@@ -30,15 +30,6 @@ function InnerApp() {
             margin: 0,
             padding: 0,
             fontSize: "1rem",
-            // [theme.breakpoints.up("sm")]: {
-            //   fontSize: "10px",
-            // },
-            // [theme.breakpoints.up("md")]: {
-            //   fontSize: "13px",
-            // },
-            // [theme.breakpoints.up("lg")]: {
-            //   fontSize: "1rem",
-            // },
           },
           a: {
             textDecoration: "none",

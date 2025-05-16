@@ -11,6 +11,7 @@ interface Props {
   onAdd: () => void;
   onEdit: () => void;
   onDelete: () => void;
+  gridRef: React.RefObject<any>;
 }
 
 export default function UserDataGrid({
@@ -22,12 +23,14 @@ export default function UserDataGrid({
   onAdd,
   onEdit,
   onDelete,
+  gridRef,
 }: Props) {
   console.log("rowSelectionModel", rowSelectionModel);
   return (
     <>
       <Stack direction="row" spacing={1} height="600px" flex="1 1 0">
         <DataGrid
+          ref={gridRef}
           editMode="row"
           checkboxSelection
           columns={columns}

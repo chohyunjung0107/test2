@@ -4,7 +4,7 @@ import { useSearchParams } from "react-router-dom";
 import { Button, TextField, Stack } from "@mui/material";
 
 //내부 import
-import { createUser } from "../../api/Service";
+import { createUser, updateUser } from "../../api/Service";
 import type { TUser } from "../../type/TUser";
 
 const user = {
@@ -22,9 +22,25 @@ const user = {
 };
 
 export default function UserPopup() {
-  const [NewUser, setNewUser] = useState(user as TUser);
   const [searchParams] = useSearchParams();
-  const paramsObj = Object.fromEntries(searchParams.entries());
+  const paramsObj = Object.fromEntries(searchParams.entries()) as TUser;
+  console.log("paramsObj", paramsObj);
+  const [NewUser, setNewUser] = useState(
+    paramsObj.id ? (paramsObj as TUser) : (user as TUser)
+  );
+  const userFields: (keyof TUser)[] = [
+    "id",
+    "password",
+    "name",
+    "faceImage",
+    "age",
+    "sex",
+    "address",
+    "tel",
+    "mobile",
+    "email",
+    "birthday",
+  ];
 
   const handleOnchange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -35,24 +51,36 @@ export default function UserPopup() {
   };
 
   const handleCreateUser = async () => {
-    await createUser(NewUser as TUser)
-      .then((res) => {
-        if (res.status === 201) {
-          // 부모 창에 메시지 전송
-          if (window.opener && !window.opener.closed) {
-            window.opener.refreshList?.();
+    //TODO : 유효성 검사 추가
+
+    paramsObj.id
+      ? await updateUser(paramsObj?.id, NewUser).then((res) => {
+          if (res.status === 200) {
+            // 부모 창에 메시지 전송
+            if (window.opener && !window.opener.closed) {
+              window.opener.refreshList?.();
+            }
+            //팝업창 닫기
+            window.close();
           }
-          //팝업창 닫기
-          window.close();
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+        })
+      : await createUser(NewUser as TUser)
+          .then((res) => {
+            if (res.status === 201) {
+              // 부모 창에 메시지 전송
+              if (window.opener && !window.opener.closed) {
+                window.opener.refreshList?.();
+              }
+              //팝업창 닫기
+              window.close();
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
   };
 
   useEffect(() => {
-    console.log("paramsObj", paramsObj.id);
     return () => {
       setNewUser(user as TUser);
     };
@@ -75,19 +103,7 @@ export default function UserPopup() {
           justifyItems: "flex-start",
         }}
       >
-        {[
-          "id",
-          "password",
-          "name",
-          "faceImage",
-          "age",
-          "sex",
-          "address",
-          "tel",
-          "mobile",
-          "email",
-          "birthday",
-        ].map((item) => (
+        {userFields.map((item) => (
           <Stack
             flexDirection={"row"}
             gap={1}
@@ -100,7 +116,7 @@ export default function UserPopup() {
             <TextField
               name={item}
               label={item}
-              value={paramsObj[item]}
+              value={NewUser[item]}
               onChange={handleOnchange}
               type={item === "password" ? "password" : "text"}
               onKeyDown={(e) => {
