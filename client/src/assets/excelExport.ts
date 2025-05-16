@@ -1,5 +1,5 @@
 import * as XLSX from "xlsx";
-// import { getFormattedDateTime } from "@/lib/utils";
+import dayjs from "dayjs";
 
 export function ExportXlsx(
   data: any[],
@@ -15,7 +15,7 @@ export function ExportXlsx(
     const wb = XLSX.utils.book_new();
 
     //오늘 일시 추출(파일명에 사용)
-    const date = new Date();
+    const date = dayjs(new Date()).format("YYYYMMDD HH:mm:ss");
 
     //엑셀 컬럼명 한글화
     columnName.forEach((x: any, idx: number) => {

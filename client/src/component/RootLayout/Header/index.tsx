@@ -8,12 +8,16 @@ import {
   Typography,
   IconButton,
   AppBar as MuiAppBar,
+  Stack,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import NightlightIcon from "@mui/icons-material/Nightlight";
+import LightModeIcon from "@mui/icons-material/LightMode";
 
 //내부 import
 import MenuPopupState from "./MenuPopupState";
 import { MenuOpenContext } from "../../../context/MenuContext";
+import { IsModeContext } from "../../../context/ModeContext";
 const drawerWidth = 240;
 
 // AppBar 스타일 확장
@@ -44,6 +48,7 @@ export default function Header({
 }) {
   const location = useLocation();
   const { menuName, fomatMenuList } = useContext(MenuOpenContext);
+  const { isDark, toggleMode } = useContext(IsModeContext);
   const [tabList, setTabList] = useState<string[]>([]);
 
   // const handleTabClose = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -67,30 +72,37 @@ export default function Header({
     <>
       {/* AppBar */}
       <AppBar position="fixed" open={open}>
-        <Toolbar sx={{ display: "flex", gap: 2 }}>
-          {!open && (
-            <>
-              <MenuPopupState />
+        <Toolbar
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            gap: 2,
+          }}
+        >
+          <Stack direction={"row"} alignItems="center" gap={2}>
+            {!open && (
+              <>
+                <MenuPopupState />
 
-              <Link href="/">
-                <Typography variant="h6" noWrap>
-                  LOGO
-                </Typography>
-              </Link>
-            </>
-          )}
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            sx={{ mr: 2, ...(open && { display: "none" }) }}
-          >
-            <MenuIcon />
-          </IconButton>
+                <Link href="/">
+                  <Typography variant="h6" noWrap>
+                    LOGO
+                  </Typography>
+                </Link>
+              </>
+            )}
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              edge="start"
+              sx={{ mr: 2, ...(open && { display: "none" }) }}
+            >
+              <MenuIcon />
+            </IconButton>
 
-          {/* =========TAB BAR=========== */}
-          {/* <div
+            {/* =========TAB BAR=========== */}
+            {/* <div
             style={{
               width: "50%",
               display: "flex",
@@ -123,6 +135,19 @@ export default function Header({
                 );
               })}
           </div> */}
+          </Stack>
+
+          <Stack>
+            <IconButton
+              color="inherit"
+              aria-label="theme mode"
+              onClick={toggleMode}
+              edge="start"
+              // sx={{ mr: 2, ...(open && { display: "none" }) }}
+            >
+              {isDark ? <NightlightIcon /> : <LightModeIcon />}
+            </IconButton>
+          </Stack>
         </Toolbar>
       </AppBar>
     </>

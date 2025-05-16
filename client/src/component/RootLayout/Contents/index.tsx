@@ -13,12 +13,14 @@ const Main = styled("main", {
   flexGrow: 1,
   padding: theme.spacing(3),
   marginLeft: `-${drawerWidth}px`,
+  height: "100vh",
   transition: theme.transitions.create("margin", {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
   ...(open && {
     marginLeft: 0,
+    width: `calc(100% - ${drawerWidth}px)`,
     transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
