@@ -1,7 +1,8 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useRef } from "react";
 import type { ChangeEvent } from "react";
 
 import type { GridColDef, GridRowSelectionModel } from "@mui/x-data-grid";
+import { useReactToPrint } from "react-to-print";
 
 // 내부 import
 import { useGetUserList } from "../hook/useGetUser";
@@ -11,8 +12,12 @@ import { ExportXlsx } from "../assets/excelExport";
 import UserSearchFields from "../component/User/UserSearchFields";
 import UserActionButtons from "../component/User/UserActionButtons";
 import UserDataGrid from "../component/User/UserDataGrid";
+import UserCard from "../component/User/UserCard";
 
 export default function UserPage() {
+  const isMobile = window.innerWidth <= 768;
+  const contentRef = useRef<HTMLDivElement>(null);
+  const handleUserToPrint = useReactToPrint({ contentRef });
   const [rowSelectionModel, setRowSelectionModel] = useState<
     GridRowSelectionModel[]
   >([]);
@@ -102,7 +107,7 @@ export default function UserPage() {
 
   // 이 함수는 팝업이 닫힐 때 호출됨
   (window as any).refreshList = () => {
-    alert("등록 성공했습니다");
+    alert("성공했습니다");
     refresh({
       id: "",
       name: "",
@@ -163,11 +168,13 @@ export default function UserPage() {
           justifyContent: "space-between",
         }}
       >
-        <UserSearchFields
-          inputValue={inputValue}
-          handleOnChange={handleOnchange}
-          handleKeyDown={handleKeyDown}
-        />
+        {!isMobile && (
+          <UserSearchFields
+            inputValue={inputValue}
+            handleOnChange={handleOnchange}
+            handleKeyDown={handleKeyDown}
+          />
+        )}
         <UserActionButtons
           onSearch={() => refresh(inputValue)}
           onExport={() =>
@@ -178,25 +185,45 @@ export default function UserPage() {
               "유저리스트_"
             )
           }
+          onPrint={handleUserToPrint}
         />
       </div>
 
-      <UserDataGrid
-        rows={userList}
-        columns={columns}
-        rowSelectionModel={rowSelectionModel}
-        setRowSelectionModel={setRowSelectionModel}
-        onProcessRowUpdate={(newRow) => {
-          const updatedRows = userList.map((row) =>
-            row.id === newRow.id ? newRow : row
-          );
-          setUserList(updatedRows);
-          return newRow;
-        }}
-        onAdd={() => handlePopupUser(true)}
-        onEdit={() => handlePopupUser(false)}
-        onDelete={handleDeleteUser}
-      />
+      {isMobile && userList ? (
+        <div style={{ height: "70vh", overflow: "auto" }} ref={contentRef}>
+          {userList.map((item) => {
+            return (
+              <div key={item.id!}>
+                <UserCard
+                  id={item.id!}
+                  name={item.name!}
+                  sex={item.sex!}
+                  birthday={item.birthday!}
+                  email={item.email!}
+                />
+              </div>
+            );
+          })}
+        </div>
+      ) : (
+        <UserDataGrid
+          gridRef={contentRef}
+          rows={userList}
+          columns={columns}
+          rowSelectionModel={rowSelectionModel}
+          setRowSelectionModel={setRowSelectionModel}
+          onProcessRowUpdate={(newRow) => {
+            const updatedRows = userList.map((row) =>
+              row.id === newRow.id ? newRow : row
+            );
+            setUserList(updatedRows);
+            return newRow;
+          }}
+          onAdd={() => handlePopupUser(true)}
+          onEdit={() => handlePopupUser(false)}
+          onDelete={handleDeleteUser}
+        />
+      )}
     </div>
   );
 }

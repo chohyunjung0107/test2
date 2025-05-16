@@ -94,6 +94,12 @@ export default function Header({
 
   useEffect(() => {
     handleInTabPage(location.pathname);
+
+    //모바일 버전에서는 탭안보이게 만들기
+    const isMobile = window.innerWidth <= 768;
+    if (isMobile) {
+      setTabList([]);
+    }
   }, [location.pathname]);
 
   return (
