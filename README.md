@@ -4,8 +4,29 @@
 ![Image](https://github.com/user-attachments/assets/58ac6936-5e30-492e-97af-20a6e8afa308)
 ![Image](https://github.com/user-attachments/assets/5eee1905-f902-4a9f-9b0d-c3647ce56f67)
 
-- header, sideMenu(toggle), contents 3개의 영역으로 레이아웃 구성
-- 디자인 라이브러리와 그리드는 mui를 사용
+- 전체 레이아웃은 header, sideMenu(toggle), contents 3개의 영역으로 레이아웃 구성
+- Header :
+
+  - MAIN LOGO버튼을 클릭하면 컨텍스트 메뉴가 뜹니다.
+  - LOGO를 클릭하면 /home으로 이동합니다.
+  - 햄버거 버튼을 글릭하면 사이드 메뉴가 토글됩니다.
+  - 탭메뉴 : 페이지가 이동하면 히스토리가 탭으로 생성됩니다. 탭을 클릭하면 해당 페이지로 이동합니다.
+  - 테마변경 : 아이콘을 클릭하면 다크모드 혹은 라이트모드로 변경이 가능합니다.
+
+- SideMenu : 상단에는 헤더와 동일하게 컨텍스트메뉴와 /home이동합니다.
+
+  - 메뉴는 총 3개의 뎁스로 이루어져있으며 'assets/MenuList' 배열을 기반으로 렌더링합니다.
+
+- contents : 페이지를 이동할 경우 렌더링 되는 컴포넌트입니다.
+  - 해당 라우터로 이동할 경우 메뉴컨텍스트에서 가지고 있는 값을 브래드 스크럼의 형태로 데이터를 포멧팅합니다.
+- 사용자 관리 페이지 : 기본적으로 사용자 CRUD 기능이 동작하는 페이지입니다
+  - 엑셀로 내보내기와 인쇄 기능은 상단의 버튼을 확인할 수 있습니다.
+
+# 상태관리
+
+- 리액트 내장 함수인 useContext를 사용하고 있습니다.
+- [constext/MenuContext.tsx] 메뉴의 현재 상태인 블리언값과 토글메뉴 함수, 브레드스크럼으로 사용하는 메뉴명 등을 글로벌 스테이트로 가지고 있습니다.
+- [constext/ModeContext.tsx] 테마를 바꿀 수 있는 값을 글로벌로 가지고 있는 컨텍스트 메뉴입니다.
 
 # verstion
 
