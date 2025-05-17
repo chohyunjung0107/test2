@@ -24,7 +24,7 @@
 
 # 상태관리
 
-- 리액트 내장 함수인 useContext를 사용하고 있습니다.
+- 리액트 내장 hook인인 useContext를 사용하고 있습니다.
 - [constext/MenuContext.tsx] 메뉴의 현재 상태인 블리언값과 토글메뉴 함수, 브레드스크럼으로 사용하는 메뉴명 등을 글로벌 스테이트로 가지고 있습니다.
 - [constext/ModeContext.tsx] 테마를 바꿀 수 있는 값을 글로벌로 가지고 있는 컨텍스트 메뉴입니다.
 
