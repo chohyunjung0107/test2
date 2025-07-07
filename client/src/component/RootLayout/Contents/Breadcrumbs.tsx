@@ -14,7 +14,7 @@ export default function BreadcrumbsComp({ menuName }: { menuName: string[] }) {
         return (
           <Breadcrumbs aria-label="breadcrumb" key={idx}>
             <Link underline="hover" color="inherit" href="/">
-              {item} {"  "} {idx === 2 ? null : <span>/</span>}
+              {item}{idx === 1 ? null : <span>{" "}&#187;{" "}</span>}
             </Link>
           </Breadcrumbs>
         );

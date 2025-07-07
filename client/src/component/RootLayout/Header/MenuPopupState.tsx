@@ -9,9 +9,9 @@ export default function MenuPopupState() {
     <PopupState variant="popover" popupId="demo-popup-menu">
       {(popupState) => (
         <React.Fragment>
-          <Button variant="contained" {...bindTrigger(popupState)}>
+          {/* <Button variant="contained" {...bindTrigger(popupState)}>
             main logo
-          </Button>
+          </Button> */}
           <Menu {...bindMenu(popupState)}>
             <MenuItem onClick={popupState.close}>MES</MenuItem>
             <MenuItem onClick={popupState.close}>QMS</MenuItem>

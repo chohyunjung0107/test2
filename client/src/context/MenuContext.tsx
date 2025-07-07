@@ -47,7 +47,7 @@ export const MenuOpenProvider = ({ children }: { children: ReactNode }) => {
 
     const findMenu = (menuItems: typeof MenuList, pathArray: string[]) => {
       for (const item of menuItems) {
-        if (item.path === `/${pathArray.join("/")}`) {
+        if (item.path === `/ ${pathArray.join("/")}`) {
           menuList.push(item.title);
           return true;
         }

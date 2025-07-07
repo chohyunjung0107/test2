@@ -13,19 +13,6 @@
     "birthday": "1993-05-20"
   },
   {
-    "id": "2",
-    "password": "pwd5678",
-    "name": "김영희",
-    "faceImage": "https://example.com/images/kim.jpg",
-    "age": "28",
-    "sex": "F",
-    "address": "부산시 해운대구 우동 456",
-    "tel": "051-9876-5432",
-    "mobile": "010-9876-5432",
-    "email": "kim@example.com",
-    "birthday": "1995-08-15"
-  },
-  {
     "id": "3",
     "password": "abc9012",
     "name": "이민호",

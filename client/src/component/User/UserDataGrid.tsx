@@ -35,7 +35,7 @@ export default function UserDataGrid({
           checkboxSelection
           columns={columns}
           rows={rows}
-          hideFooter
+          // hideFooter
           onRowSelectionModelChange={(model) => {
             const selectedRows = rows.filter((row) =>
               (model as GridRowSelectionModel).ids.has(row.id as string)

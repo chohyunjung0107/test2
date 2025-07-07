@@ -44,7 +44,7 @@ export default function SideMenu({
     >
       <DrawerHeader>
         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-          <MenuPopupState />
+          {/* <MenuPopupState /> */}
           <Link href="/">
             <Typography variant="h6" noWrap>
               LOGO

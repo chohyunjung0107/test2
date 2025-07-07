@@ -1,19 +1,33 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import RootLayout from "../component/RootLayout";
+import RootLayout from "@component/RootLayout";
 import { lazy } from "react";
-import Loadable from "../component/Loadable";
+import Loadable from "@component/Loadable";
 
-const Home = Loadable(lazy(() => import("../pages/Home")));
-const User = Loadable(lazy(() => import("../pages/UserPage")));
-const Test1 = Loadable(lazy(() => import("../pages/Testpage1")));
-const Test2 = Loadable(lazy(() => import("../pages/Testpage2")));
-const Test3 = Loadable(lazy(() => import("../pages/Testpage3")));
-const Test4 = Loadable(lazy(() => import("../pages/Testpage4")));
-const Test5 = Loadable(lazy(() => import("../pages/Testpage5")));
-const Test6 = Loadable(lazy(() => import("../pages/Testpage6")));
-const Test7 = Loadable(lazy(() => import("../pages/Testpage7")));
-const Test8 = Loadable(lazy(() => import("../pages/Testpage8")));
-const Test9 = Loadable(lazy(() => import("../pages/Testpage9")));
+const Home = Loadable(lazy(() => import("@pages/Home")));
+const User = Loadable(lazy(() => import("@pages/UserPage")));
+const Test1 = Loadable(lazy(() => import("@pages/Testpage1")));
+
+//모니터링 
+const TagMonitoring = Loadable(lazy(()=> import("@pages/monitoring/Tag")))
+const GwMonitoring = Loadable(lazy(()=> import("@pages/monitoring/Gw")))
+const MapMonitoring = Loadable(lazy(()=> import("@pages/monitoring/Map")))
+
+//이력 
+const AlarmHis = Loadable(lazy(()=>import("@pages/history/Alarm")))
+const AssetMoveHis = Loadable(lazy(()=>import("@pages/history/AssetMove")))
+const HitMap = Loadable(lazy(()=>import("@pages/history/HitMap")))
+
+//시스템 설정
+const GwManagement = Loadable(lazy(()=> import("@pages/systemSetting/Gw")))
+const MapManagement = Loadable(lazy(()=> import("@pages/systemSetting/Map")))
+const AssetManagement = Loadable(lazy(()=> import("@pages/systemSetting/Asset")))
+
+//관리자 설정
+const UserManagement = Loadable(lazy(()=> import("@pages/adminSetting/User")))
+const AuthManagement = Loadable(lazy(()=> import("@pages/adminSetting/Auth")))
+
+//개인설정 
+const AlarmSetting = Loadable(lazy(()=> import("@pages/setting/Alarm")))
 
 //popup
 const UserPopup = Loadable(lazy(() => import("../component/Modal/UserPopup")));
@@ -28,44 +42,57 @@ const routerConfig = [
         element: <Home />,
       },
       {
-        path: "mes/system/user",
-        element: <User />,
+        path: "monitoring/tag",
+        element: <TagMonitoring />,
       },
       {
-        path: "mes/system/test1",
-        element: <Test1 />,
+        path: "monitoring/gw",
+        element: <GwMonitoring />,
       },
       {
-        path: "mes/system/test2",
-        element: <Test2 />,
+        path: "monitoring/map",
+        element: <MapMonitoring />,
+      },
+      // 이력 
+      {
+        path: "history/alarm",
+        element: <AlarmHis />,
       },
       {
-        path: "mes/system/test3",
-        element: <Test3 />,
+        path: "history/asset-move",
+        element: <AssetMoveHis />,
       },
       {
-        path: "mes/system/test4",
-        element: <Test4 />,
+        path: "history/hitmap",
+        element: <HitMap />,
+      },
+      //시스템설정 
+      {
+        path: "system/Gw",
+        element: <GwManagement />,
       },
       {
-        path: "mes/system/test5",
-        element: <Test5 />,
+        path: "system/map",
+        element: <MapManagement />,
       },
       {
-        path: "mes/system/test6",
-        element: <Test6 />,
+        path: "system/asset",
+        element: <AssetManagement />,
+      },
+
+      //관리자 설정 
+      {
+        path: "admin/user",
+        element: <UserManagement />,
       },
       {
-        path: "mes/system/test7",
-        element: <Test7 />,
+        path: "admin/auth",
+        element: <AuthManagement />,
       },
+      //개인설정
       {
-        path: "mes/system/test8",
-        element: <Test8 />,
-      },
-      {
-        path: "mes/system/test9",
-        element: <Test9 />,
+        path: "setting/alarm",
+        element: <AlarmSetting />,
       },
     ],
   },

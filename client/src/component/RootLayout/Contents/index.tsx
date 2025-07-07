@@ -48,6 +48,7 @@ export default function Contents({
   const { menuName, fomatMenuList } = useContext(MenuOpenContext);
 
   useEffect(() => {
+    console.log(menuName, "---menuName")
     fomatMenuList();
   }, [location.pathname]);
 

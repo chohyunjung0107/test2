@@ -5,14 +5,14 @@ import type { GridColDef, GridRowSelectionModel } from "@mui/x-data-grid";
 import { useReactToPrint } from "react-to-print";
 
 // 내부 import
-import { useGetUserList } from "../hook/useGetUser";
-import { deleteUser } from "../api/Service";
-import { ExportXlsx } from "../assets/excelExport";
+import { useGetUserList } from "@hook/useGetUser";
+import { deleteUser } from "@api/Service";
+import { ExportXlsx } from "@assets/excelExport";
 
-import UserSearchFields from "../component/User/UserSearchFields";
-import UserActionButtons from "../component/User/UserActionButtons";
-import UserDataGrid from "../component/User/UserDataGrid";
-import UserCard from "../component/User/UserCard";
+import UserSearchFields from "@component/User/UserSearchFields";
+import UserActionButtons from "@component/User/UserActionButtons";
+import UserDataGrid from "@component/User/UserDataGrid";
+import UserCard from "@component/User/UserCard";
 
 export default function UserPage() {
   const isMobile = window.innerWidth <= 768;

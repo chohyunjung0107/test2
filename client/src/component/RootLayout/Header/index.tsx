@@ -72,28 +72,28 @@ export default function Header({
     setTabList(newTabList);
   };
 
-  const handleInTabPage = (pathname: string) => {
-    //tabList에 이미 존재하는지 확인하고 존재하면 그냥 리턴해버림
-    const isExist = tabList?.some((item) => item.router === pathname);
-    if (isExist) return;
+  // const handleInTabPage = (pathname: string) => {
+  //   //tabList에 이미 존재하는지 확인하고 존재하면 그냥 리턴해버림
+  //   const isExist = tabList?.some((item) => item.router === pathname);
+  //   if (isExist) return;
 
-    //tabList의 length가 7개 이상이면 가장 오래된 탭을 삭제
-    if (tabList.length >= 7) {
-      const newTabList = tabList.slice(1);
-      setTabList(newTabList);
-    }
+  //   //tabList의 length가 7개 이상이면 가장 오래된 탭을 삭제
+  //   if (tabList.length >= 7) {
+  //     const newTabList = tabList.slice(1);
+  //     setTabList(newTabList);
+  //   }
 
-    const d = childMenu.filter((page) => {
-      return page.path === pathname;
-    });
+  //   const d = childMenu.filter((page) => {
+  //     return page.path === pathname;
+  //   });
 
-    return setTabList((prev: any) => {
-      return [...prev, { name: d[0].title, router: d[0].path }];
-    });
-  };
+  //   return setTabList((prev: any) => {
+  //     return [...prev, { name: d[0].title, router: d[0].path }];
+  //   });
+  // };
 
   useEffect(() => {
-    handleInTabPage(location.pathname);
+    // handleInTabPage(location.pathname);
 
     //모바일 버전에서는 탭안보이게 만들기
     const isMobile = window.innerWidth <= 768;
@@ -116,7 +116,7 @@ export default function Header({
           <Stack direction={"row"} alignItems="center" gap={2}>
             {!open && (
               <>
-                <MenuPopupState />
+                {/* <MenuPopupState /> */}
 
                 <Link href="/">
                   <Typography variant="h6" noWrap>
@@ -136,7 +136,7 @@ export default function Header({
             </IconButton>
 
             {/* =========TAB BAR=========== */}
-            <div
+            {/* <div
               style={{
                 width: "50%",
                 display: "flex",
@@ -168,7 +168,7 @@ export default function Header({
                     </NavLink>
                   );
                 })}
-            </div>
+            </div> */}
           </Stack>
 
           <Stack>

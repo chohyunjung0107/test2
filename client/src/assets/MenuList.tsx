@@ -17,92 +17,110 @@ export interface TMenuItem {
 // 메뉴 데이터
 const MenuList: TMenuItem[] = [
   {
-    title: "MES",
-    path: "/mes",
+    title: "대시보드",
+    path: "/home",
     icon: <InboxIcon />,
-    children: [
-      {
-        title: "SYSTEM",
-        path: "/system",
-        icon: <DraftsIcon />,
-        children: [
-          {
-            title: "사용자 관리",
-            path: "/mes/system/user",
-            icon: <StarBorder />,
-          },
-          {
-            title: "테스트1",
-            path: "mes/system/test1",
-            icon: <StarBorder />,
-          },
-          {
-            title: "테스트2",
-            path: "mes/system/test2",
-            icon: <StarBorder />,
-          },
-          {
-            title: "테스트3",
-            path: "mes/system/test3",
-            icon: <StarBorder />,
-          },
-          {
-            title: "테스트4",
-            path: "mes/system/test4",
-            icon: <StarBorder />,
-          },
-          {
-            title: "테스트5",
-            path: "mes/system/test5",
-            icon: <StarBorder />,
-          },
-          {
-            title: "테스트6",
-            path: "mes/system/test6",
-            icon: <StarBorder />,
-          },
-          {
-            title: "테스트7",
-            path: "mes/system/test7",
-            icon: <StarBorder />,
-          },
-          {
-            title: "테스트8",
-            path: "mes/system/test8",
-            icon: <StarBorder />,
-          },
-          {
-            title: "테스트9",
-            path: "mes/system/test9",
-            icon: <StarBorder />,
-          },
-        ],
-      },
-    ],
   },
+  /** 모니터링 */
   {
-    title: "메뉴2",
-    path: "/menu2",
+    title: "모니터링",
+    path: "/monitoring",
     icon: <SendIcon />,
+    children: [
+        {
+          title: "태그 현황",
+          path: "monitoring/tag",
+          icon: <StarBorder />,
+        },
+        {
+          title: "게이트웨이 현황",
+          path: "monitoring/gw",
+          icon: <StarBorder />,
+        },
+         {
+          title: "지도 현황",
+          path: "monitoring/map",
+          icon: <StarBorder />,
+        },
+      ],
   },
+  /** 이력 */
   {
-    title: "메뉴3",
-    path: "/menu3",
+    title: "이력",
+    path: "/history",
+    icon: <SendIcon />,
+    children: [
+        {
+          title: "알람 이력",
+          path: "history/alarm",
+          icon: <StarBorder />,
+        },
+        {
+          title: "자산 이동 이력",
+          path: "history/asset-move",
+          icon: <StarBorder />,
+        },
+         {
+          title: "히트맵",
+          path: "history/hitmap",
+          icon: <StarBorder />,
+        },
+      ],
+  },
+
+  /** 시스템 설정 */
+  {
+    title: "시스템 설정",
+    path: "/system",
+    icon: <SendIcon />,
+    children: [
+        {
+          title: "게이트웨이 관리",
+          path: "system/Gw",
+          icon: <StarBorder />,
+        },
+        {
+          title: "지도 관리",
+          path: "system/map",
+          icon: <StarBorder />,
+        },
+        {
+          title: "자산 관리",
+          path: "system/asset",
+          icon: <StarBorder />,
+        },
+      ],
+  },
+  /** 관리자 설정 */
+   {
+    title: "관리자 설정",
+    path: "/admin",
+    icon: <SendIcon />,
+    children: [
+        {
+          title: "사용자 관리",
+          path: "admin/user",
+          icon: <StarBorder />,
+        },
+        {
+          title: "권한 관리",
+          path: "admin/auth",
+          icon: <StarBorder />,
+        },
+      ],
+  },
+  /** 개인 설정 */
+  {
+    title: "개인설정",
+    path: "/setting",
     icon: <DraftsIcon />,
     children: [
-      {
-        title: "메뉴3-1",
-        path: "/menu1/menu1-1",
-        icon: <DraftsIcon />,
-        children: [
           {
-            title: "메뉴3-1-1",
-            path: "/menu1/menu1-1/menu1-1-1",
+            title: "알람 관리",
+            path: "setting/alarm",
             icon: <StarBorder />,
           },
         ],
-      },
-    ],
   },
 ];
 

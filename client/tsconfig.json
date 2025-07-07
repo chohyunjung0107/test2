@@ -3,5 +3,18 @@
   "references": [
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" }
-  ]
+  ],
+  "compilerOptions": {
+    "baseUrl": ".",	   // 절대 경로의 기준을 프로젝트 루트로 설정
+    "paths": {
+      "@/*": ["src/*"], // '@'를 'src' 폴더로 매핑
+      "@api/*": ["src/api/*"],
+      "@assets/*": ["src/assets/*"],
+      "@component/*": ["src/component/*"],
+      "@context/*": ["src/context/*"],
+      "@hook/*": ["src/hook/*"],
+      "@pages/*" : ["src/pages/*"],
+      "@type/*" : ["src/type/*"],
+      }
+  }
 }
