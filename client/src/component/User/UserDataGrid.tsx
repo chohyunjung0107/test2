@@ -32,10 +32,10 @@ export default function UserDataGrid({
         <DataGrid
           ref={gridRef}
           editMode="row"
+          showToolbar
           checkboxSelection
           columns={columns}
           rows={rows}
-          // hideFooter
           onRowSelectionModelChange={(model) => {
             const selectedRows = rows.filter((row) =>
               (model as GridRowSelectionModel).ids.has(row.id as string)

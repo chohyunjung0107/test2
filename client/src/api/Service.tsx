@@ -1,12 +1,12 @@
-import api from "./IApi";
-import type { TUser, TSearchParams } from "../type/TUser";
+import api from './IApi';
+import type { TUser, TSearchParams } from '../type/TUser';
 
 // 유저 리스트 조회
 export const getUserList = (params: TSearchParams) =>
-  api.get("/users", { params });
+  api.get('/users', { params });
 
 // 유저 생성
-export const createUser = (data: TUser) => api.post("/users", data);
+export const createUser = (data: TUser) => api.post('/users', data);
 
 // 유저 수정
 export const updateUser = (id: string, data: TUser) =>

@@ -1,22 +1,50 @@
-import * as React from "react";
-import Button from "@mui/material/Button";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
+import * as React from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
+import { IconButton } from '@mui/material';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 export default function MenuPopupState() {
+  const navigate = useNavigate();
+
+  const handleSetting = () => {
+    alert('개인설정');
+  };
+
   return (
     <PopupState variant="popover" popupId="demo-popup-menu">
       {(popupState) => (
         <React.Fragment>
-          {/* <Button variant="contained" {...bindTrigger(popupState)}>
-            main logo
-          </Button> */}
+          <IconButton
+            color="inherit"
+            aria-label="theme mode"
+            // onClick={MenuPopupState}
+            edge="start"
+            {...bindTrigger(popupState)}
+          >
+            <AccountCircleIcon />
+          </IconButton>
+
           <Menu {...bindMenu(popupState)}>
-            <MenuItem onClick={popupState.close}>MES</MenuItem>
-            <MenuItem onClick={popupState.close}>QMS</MenuItem>
-            <MenuItem onClick={popupState.close}>APS</MenuItem>
-            <MenuItem onClick={popupState.close}>MRP</MenuItem>
+            <MenuItem
+              onClick={() => {
+                navigate('/login');
+              }}
+            >
+              로그아웃
+            </MenuItem>
+            <MenuItem
+              onClick={async () => {
+                await handleSetting();
+                popupState.close();
+              }}
+            >
+              개인설정
+            </MenuItem>
           </Menu>
         </React.Fragment>
       )}

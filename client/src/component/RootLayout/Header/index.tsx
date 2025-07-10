@@ -1,40 +1,41 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect } from 'react';
 
-import { useLocation, Link, NavLink, useNavigate } from "react-router-dom";
+import { useLocation, Link, NavLink, useNavigate } from 'react-router-dom';
 
-import { styled } from "@mui/material/styles";
+import { styled } from '@mui/material/styles';
 import {
   Toolbar,
   Typography,
   IconButton,
   AppBar as MuiAppBar,
   Stack,
-} from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
-import NightlightIcon from "@mui/icons-material/Nightlight";
-import LightModeIcon from "@mui/icons-material/LightMode";
-import HighlightOffOutlined from "@mui/icons-material/HighlightOffOutlined";
+} from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import NightlightIcon from '@mui/icons-material/Nightlight';
+import LightModeIcon from '@mui/icons-material/LightMode';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import HighlightOffOutlined from '@mui/icons-material/HighlightOffOutlined';
 
 //내부 import
-import MenuPopupState from "./MenuPopupState";
-import { IsModeContext } from "../../../context/ModeContext";
-import { childMenu } from "../../../assets/MenuList";
+import UserIconPopupState from './MenuPopupState';
+import { IsModeContext } from '../../../context/ModeContext';
+import { childMenu } from '../../../assets/MenuList';
 
 const drawerWidth = 240;
 
 // AppBar 스타일 확장
 const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== "open",
+  shouldForwardProp: (prop) => prop !== 'open',
 })<{ open?: boolean }>(({ theme, open }) => ({
   zIndex: theme.zIndex.drawer + 1,
-  transition: theme.transitions.create(["width", "margin"], {
+  transition: theme.transitions.create(['width', 'margin'], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
   ...(open && {
     marginLeft: drawerWidth,
     width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(["width", "margin"], {
+    transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
@@ -52,12 +53,12 @@ export default function Header({
   const navigate = useNavigate();
   const { isDark, toggleMode } = useContext(IsModeContext);
   const [tabList, setTabList] = useState<{ name: string; router: string }[]>(
-    []
+    [],
   );
 
   const handleTabClose = (
     e: React.MouseEvent<HTMLButtonElement>,
-    router: string
+    router: string,
   ) => {
     e.preventDefault();
 
@@ -108,16 +109,14 @@ export default function Header({
       <AppBar position="fixed" open={open}>
         <Toolbar
           sx={{
-            display: "flex",
-            justifyContent: "space-between",
+            display: 'flex',
+            justifyContent: 'space-between',
             gap: 2,
           }}
         >
-          <Stack direction={"row"} alignItems="center" gap={2}>
+          <Stack direction={'row'} alignItems="center" gap={2}>
             {!open && (
               <>
-                {/* <MenuPopupState /> */}
-
                 <Link href="/">
                   <Typography variant="h6" noWrap>
                     LOGO
@@ -130,7 +129,7 @@ export default function Header({
               aria-label="open drawer"
               onClick={handleDrawerOpen}
               edge="start"
-              sx={{ mr: 2, ...(open && { display: "none" }) }}
+              sx={{ mr: 2, ...(open && { display: 'none' }) }}
             >
               <MenuIcon />
             </IconButton>
@@ -171,16 +170,18 @@ export default function Header({
             </div> */}
           </Stack>
 
-          <Stack>
+          <Stack direction={'row'} gap={2}>
             <IconButton
               color="inherit"
               aria-label="theme mode"
               onClick={toggleMode}
               edge="start"
-              // sx={{ mr: 2, ...(open && { display: "none" }) }}
             >
               {isDark ? <NightlightIcon /> : <LightModeIcon />}
             </IconButton>
+
+            {/* 사용자 아이콘 */}
+            <UserIconPopupState />
           </Stack>
         </Toolbar>
       </AppBar>

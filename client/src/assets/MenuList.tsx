@@ -18,7 +18,7 @@ export interface TMenuItem {
 const MenuList: TMenuItem[] = [
   {
     title: "대시보드",
-    path: "/home",
+    path: "/",
     icon: <InboxIcon />,
   },
   /** 모니터링 */
